@@ -1,6 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <title>:-)</title>
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How am I not myself?">
+    <meta name="author" content="Phil Manijak">
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <style type="text/css"><!--
+      	body {
+      		/*padding-top: 40px;*/
+      	}
+
+      	#profile {
+      		position: absolute;
+      		z-index: 1000;   		
+
+      		top: 315px;
+      		left: 500px;
+
+      		height: 100px;
+      		width: 100px; 
+      	}
+
+      	#profile img {
+      		height: 100%;
+      	}
+
+      	#profile .text {
+      		text-align: center;
+      	}
+
+      	#twitter, #plus, #swing {
+      		color: white;
+      		background: #08C;
+
+      		position: absolute;
+      		top: 300px;
+      		left: 100px;
+      		height: 67px;
+      		width: 115px;
+
+      		text-align: center;
+      		padding-top: 48px;
+      		margin: 50px;
+      	}
+
+      	#plus {
+      		background: brown;
+      		
+      		top: 250px;
+      		left: 300px;
+      	}
+
+      	#swing {
+      		background: olive;      		
+
+      		top: 100px;
+      		left: 500px;
+      	}
+
+      	#twitterWidget, #swingWidget {
+      		position: absolute;
+      		top: 75px;
+      		left: 100px;
+      	}
+
+      	#plusWidget {
+      		position: absolute;
+      		top: 75px;
+      		left: 100px;
+      	}
+    -->
+    </style>
+    <!-- Keep bootstrap-responsive.css after the custom styles, above. --> 
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+
+    <script type="text/javascript">
+    // jQuery:
+	$(document).ready(function() {
+
+		var $toTwitter = $('#toTwitter').hide();
+		var $toSwing = $('#toSwing').hide();
+
+		var $twitter = $('#twitterWidget').hide();
+		var $plus = $('#plusWidget').hide();
+		var $swing = $('#swingWidget').hide();		
+
+		var $swingVideo = $swing.children("iframe");
+		var swingSrc = "http://www.youtube.com/embed/GhqtxZYVt-s?rel=0&autoplay=1"
+
+		var dropRules = function(widget, overColor, dropColor, outColor, url, isSwing) {
+			return {
+				over: function(event, ui) {
+					$(this).css('background', overColor);
+					widget.fadeIn();					
+					if (isSwing) { // lulz. fixme.
+						$swingVideo.attr('src', swingSrc);
+					}
+				},
+				drop: function(event, ui) {
+					$(this).css('background', dropColor);
+					window.location.href = url;
+					$profile.remove();
+				},
+				out: function(event, ui) {
+					$(this).css('background', outColor);
+					widget.fadeOut();
+					if (isSwing) {
+						$swingVideo.attr('src', "");
+					}
+				}
+			};
+		};		
+		
+		$("#twitter")
+			.droppable(dropRules($twitter, 'navy','gray','#08C', $toTwitter.attr('href')));
+		$("#plus")
+			.droppable(dropRules($plus, 'red','gray','brown', 'http://plus.google.com'));
+		$("#swing")
+			.droppable(dropRules($swing, 'yellow','black','olive', $toSwing.attr('href'), true));
+
+		var $profile = $('#profile').draggable({
+			drag: function() {
+				$('#profile .text').hide();	
+			}
+		});
+		
+
+		$("body")
+			.animate({'background-color': 'rgb(0,0,0)' }, 60000)
+			.animate({'background-color': 'rgb(0,0,40)'}, 60000)
+			.animate({'background-color': 'rgb(0,0,0)' }, 60000)
+			.animate({'background-color': 'rgb(0,40,0)'}, 60000)
+			.animate({'background-color': 'white'      }, 120000)
+			.animate({'background-color': 'yellow'     }, 180000);
+	});
+    </script>
+</head>
 <body>
-<P>:-)</P>
+<div class="navbar">
+	<div class="navbar-inner">
+	<div class="container">
+		<a class="brand" href="#">@pmnjk</a>
+		<ul class="nav">
+			<li><a id="toTwitter" href="http://twitter.com/pmnjk/">Twitter</a></li>
+			<li><a id="toSwing" href="http://corvallisswing.com">Corvallis Swing</a></li>
+		</ul>
+	</div>
+</div>
+
+ <div class="container">
+ 	<div id="profile">
+ 		<img src="./img/profile.jpeg" alt=":-)"/>
+ 		<p class="text">move me.</p>
+ 	</div>
+ 	<div id="twitter">T</div>
+ 	<!-- <div id="plus">+</div> -->
+ 	<div id="swing"></div>
+
+ 	<div id="twitterWidget">
+    <script type="text/javascript">
+	var twitterCard = new TWTR.Widget({
+  		version: 2,
+  		type: 'profile',
+  		rpp: 1,
+  		interval: 30000,
+  		width: 250,
+  		height: 300,
+  		theme: {
+    		shell: {
+      		background: '#e0e0e0',
+      		color: '#545454'
+    		},
+    		tweets: {
+      		background: '#ffffff',
+      		color: '#595959',
+      		links: '#1389ad'
+  		  }
+  		},
+  		features: {
+    		scrollbar: false,
+    		loop: false,
+    		live: false,
+    		behavior: 'all'
+  		}
+		}).render().setUser('pmnjk').start();
+	</script>
+	</div>
+
+	<div id="swingWidget">
+		<iframe width="300" height="169" src="" frameborder="0" allowfullscreen></iframe>
+	</div>
+</script>
 </body>
 </html>
