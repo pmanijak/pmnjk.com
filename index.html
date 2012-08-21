@@ -1,171 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>:-)</title>
-        
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="How am I not myself?">
-  <meta name="author" content="Phil Manijak">
+	<title>:-)</title>
+				
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="How am I not myself?">
+	<meta name="author" content="Phil Manijak">
 
-  <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
 
-  <style type="text/css"><!--
+	<style type="text/css"><!--
 
-     	#profile {
-     		position: absolute;     		
-     		top: 12%;
-     		left: 12%;
+		#profile {
+			position: absolute;     		
+			top: 12%;
+			left: 12%;
 
-     		height: 100px;
-     		width: 100px; 
-        z-index: 1000;
+			height: 100px;
+			width: 100px; 
+			z-index: 1000;
 
-        cursor: move;
-     	}
-     	#profile img, .logo {
-     		height: 100%;
-     	}
-     	#profile .text {
-     		text-align: center;
-     	}
+			cursor: move;
+		}
+		#profile img, .logo {
+			height: 100%;
+		}
+		#profile .text {
+			text-align: center;
+		}
 
-     	#twitter, #plus, #swing, #exclsr, #warp {     		
-     		position: absolute;     		        
-        height: 115px;
-    		width: 115px;
+		#twitter, #plus, #swing, #exclsr, #warp {     		
+			position: absolute;     		        
+			height: 115px;
+			width: 115px;
 
-     		line-height: 115px;
-        text-align: center;     		
-     		margin: 50px;
-     	}
+			line-height: 115px;
+			text-align: center;     		
+			margin: 50px;
+		}
 
-      #twitter {
-        top: 30%;
-        left: 25%;
-      }
+		#twitter {
+			top: 30%;
+			left: 25%;
+		}
 
-     	#swing {
-     		background: olive;
-     		top: 15%;
-     		left: 50%;
-     	}
-      #swing .logo {
-        margin: 1em;
-      }
+		#swing {
+			background: olive;
+			top: 15%;
+			left: 50%;
+		}
+		#swing .logo {
+			margin: 1em;
+		}
 
-      #exclsr {
-        top: 45%;
-        left: 55%;
-      }
+		#exclsr {
+			top: 45%;
+			left: 55%;
+		}
 
-      #warp {
-        background: red;
-        top: 65%;
-        left: 75%;        
-      }
-      #warp .text {
-        color: white;
-        font-size: 1.5em;
-        font-style: italic;
-      }
+		#warp {
+			background: red;
+			top: 65%;
+			left: 75%;        
+		}
+		#warp .text {
+			color: white;
+			font-size: 1.5em;
+			font-style: italic;
+		}
 
-    	#twitterWidget {
-     		position: absolute;
-     		top: 75px;
-     		left: 100px;
-     	}
-  -->
-  </style>
+		#twitterWidget {
+			position: absolute;
+			top: 75px;
+			left: 100px;
+		}
+	-->
+	</style>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
 
-  <script type="text/javascript">
+	<script type="text/javascript">
 // the jQuery:
 	$(document).ready(function() {
 
-    var destination = undefined;
-    var $warp = $('#warp');
-    var warpColor = $warp.css('background-color');
-    var warpAnimationTime = 600;
+		var destination = undefined;
+		var $warp = $('#warp');
+		var warpColor = $warp.css('background-color');
+		var warpAnimationTime = 600;
 
 // Hide the links in the navbar
 		var $toTwitter = $('#toTwitter').hide();
 		var $toSwing = $('#toSwing').hide();
-    var $toExclsr = $('#toExclsr').hide();
+		var $toExclsr = $('#toExclsr').hide();
 // Hide the twitter block with tweets
 		var $twitter = $('#twitterWidget').hide();
 
 // Make the headshot moveable
-    var $profile = $('#profile').draggable({
-      drag: function() {
-        $('#profile .text').hide(); 
-      }
-    });
+		var $profile = $('#profile').draggable({
+			drag: function() {
+				$('#profile .text').hide(); 
+			}
+		});
 			
 // Swap logos when dragging over #twitter and #swing
 		$("#twitter")
-      .droppable({
-        over: function(event, ui) {          
-          $('#twitter img').attr('src', $('#twitter img').attr('data-alt'));          
-          $twitter.fadeIn();
-          destination = $toTwitter.attr('href');
-          $warp.animate({'background-color': '#08C'}, warpAnimationTime);
-          $warp.children().css('color', 'white');
-        },
-        out: function(event, ui) {          
-          $('#twitter img').attr('src', $('#twitter img').attr('data-default'));
-          $twitter.fadeOut();          
-        }
-      });
+			.droppable({
+				over: function(event, ui) {          
+					$('#twitter img').attr('src', $('#twitter img').attr('data-alt'));          
+					$twitter.fadeIn();
+					destination = $toTwitter.attr('href');
+					$warp.animate({'background-color': '#08C'}, warpAnimationTime);
+					$warp.children().css('color', 'white');
+				},
+				out: function(event, ui) {          
+					$('#twitter img').attr('src', $('#twitter img').attr('data-default'));
+					$twitter.fadeOut();          
+				}
+			});
 			
 		$("#swing")
-      .droppable({
-        over: function(event, ui) {
-          $(this).css('background', 'yellow');
-          destination = $toSwing.attr('href');          
-          $warp.animate({'background-color': 'olive'}, warpAnimationTime);
-          $warp.children().css('color', 'white');
-        },
-        out: function(event, ui) {
-          $(this).css('background', 'olive');          
-        }
-      });
+			.droppable({
+				over: function(event, ui) {
+					$(this).css('background', 'yellow');
+					destination = $toSwing.attr('href');          
+					$warp.animate({'background-color': 'olive'}, warpAnimationTime);
+					$warp.children().css('color', 'white');
+				},
+				out: function(event, ui) {
+					$(this).css('background', 'olive');          
+				}
+			});
 
-    $("#exclsr")
-      .droppable({
-        over: function(event, ui) {          
-          destination = $toExclsr.attr('href');
-          $warp.children().css('color','black');
-          $warp.animate({'background-color': 'white'}, warpAnimationTime);
-        },
-        out: function(event, ui) {
-                    
-        }
-      });     
+		$("#exclsr")
+			.droppable({
+				over: function(event, ui) {          
+					destination = $toExclsr.attr('href');
+					$warp.children().css('color','black');
+					$warp.animate({'background-color': 'white'}, warpAnimationTime);
+				},
+				out: function(event, ui) {
+										
+				}
+			});     
 
 // Travel to another destination if the profile is dropped here.
-    $("#warp")
-      .droppable({
-        over: function(event, ui) {
-          if (destination !== undefined) {
-            $(this).animate({'background-color': '#008820'}, warpAnimationTime);
-          }
-        },
-        out: function(event, ui) {
-          if (destination !== undefined) {
-            $(this).css('background', 'magenta');
-          }
-        },
-        drop: function(event, ui) {
-          if (destination !== undefined) {
-            $profile.remove();
-            window.location.href = destination;
-          }
-        }
-      });
+		$("#warp")
+			.droppable({
+				over: function(event, ui) {
+					if (destination !== undefined) {
+						$(this).animate({'background-color': '#008820'}, warpAnimationTime);
+					}
+				},
+				out: function(event, ui) {
+					if (destination !== undefined) {
+						$(this).css('background', 'magenta');
+					}
+				},
+				drop: function(event, ui) {
+					if (destination !== undefined) {
+						$profile.remove();
+						window.location.href = destination;
+					}
+				}
+			});
 		
 // For, you know, fun.
 		$("body")
@@ -176,76 +176,76 @@
 			.animate({'background-color': 'white'      }, 120000)
 			.animate({'background-color': 'yellow'     }, 180000);
 	});
-    </script>
+		</script>
 </head>
 <body>
 
 <div class="navbar">
- 	<div class="navbar-inner">
- 	 <div class="container">
-	    <a class="brand">pmnjk</a>
-	    <ul class="nav">
-        <li><a id="toTwitter" href="http://twitter.com/pmnjk/">Twitter</a></li>
-        <li><a id="toSwing" href="http://corvallisswing.com">Corvallis Swing</a></li>
-        <li><a id="toExclsr" href="http://github.com/exclsr/">exclsr</a></li>
-      </ul>
-   </div>
-  </div>
+	<div class="navbar-inner">
+	 <div class="container">
+			<a class="brand">pmnjk</a>
+			<ul class="nav">
+				<li><a id="toTwitter" href="http://twitter.com/pmnjk/">Twitter</a></li>
+				<li><a id="toSwing" href="http://corvallisswing.com">Corvallis Swing</a></li>
+				<li><a id="toExclsr" href="http://github.com/exclsr/">exclsr</a></li>
+			</ul>
+	 </div>
+	</div>
 </div>
 
 <div class="container">
 	<div id="profile">
-  	<img src="./img/profile.jpeg" alt=":-)"/>
- 		<p class="text">move me.</p>
- 	</div>
+		<img src="./img/profile.jpeg" alt=":-)"/>
+		<p class="text">move me.</p>
+	</div>
 
- 	<div id="twitter">
-    <img class="logo"
-      data-alt="./img/redist/twitter-bird-blue-on-white.png" 
-      data-default="./img/redist/twitter-bird-white-on-blue.png"
-      src="./img/redist/twitter-bird-white-on-blue.png"/>
-  </div>
- 	
- 	<div id="swing">
-    <img class="logo"
-      data-alt="./img/swing-logo-white.png" 
-      data-default="./img/swing-logo-black.png"
-      src="./img/swing-logo-black.png"/>
-  </div>  
+	<div id="twitter">
+		<img class="logo"
+			data-alt="./img/redist/twitter-bird-blue-on-white.png" 
+			data-default="./img/redist/twitter-bird-white-on-blue.png"
+			src="./img/redist/twitter-bird-white-on-blue.png"/>
+	</div>
+	
+	<div id="swing">
+		<img class="logo"
+			data-alt="./img/swing-logo-white.png" 
+			data-default="./img/swing-logo-black.png"
+			src="./img/swing-logo-black.png"/>
+	</div>  
 
-  <div id="exclsr">
-    <img class="logo" src="./img/exclsr.png"/>
-  </div>
+	<div id="exclsr">
+		<img class="logo" src="./img/exclsr.png"/>
+	</div>
 
-  <div id="warp"><span class="text">Exit</span></div>
+	<div id="warp"><span class="text">Exit</span></div>
 
-  <!-- From Twitter, yo. -->
- 	<div id="twitterWidget">
-    <script type="text/javascript">
-	var twitterCard = new TWTR.Widget({
-  		version: 2,
-  		type: 'profile',
-  		rpp: 1,
-  		interval: 30000,
-  		width: 250,
-  		height: 300,
-  		theme: {
-    		shell: {
-      		background: '#e0e0e0',
-      		color: '#545454'
-    		},
-    		tweets: {
-      		background: '#ffffff',
-      		color: '#595959',
-      		links: '#1389ad'
-  		  }
-  		},
-  		features: {
-    		scrollbar: false,
-    		loop: false,
-    		live: false,
-    		behavior: 'all'
-  		}
+	<!-- From Twitter, yo. -->
+	<div id="twitterWidget">
+		<script type="text/javascript">
+		var twitterCard = new TWTR.Widget({
+			version: 2,
+			type: 'profile',
+			rpp: 1,
+			interval: 30000,
+			width: 250,
+			height: 300,
+			theme: {
+				shell: {
+					background: '#e0e0e0',
+					color: '#545454'
+				},
+				tweets: {
+					background: '#ffffff',
+					color: '#595959',
+					links: '#1389ad'
+				}
+			},
+			features: {
+				scrollbar: false,
+				loop: false,
+				live: false,
+				behavior: 'all'
+			}
 		}).render().setUser('pmnjk').start();
 	 </script>
 	</div>
