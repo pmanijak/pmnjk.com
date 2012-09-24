@@ -8,7 +8,8 @@
 	<meta name="description" content="How am I not myself?">
 	<meta name="author" content="Phil Manijak">
 
-	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="/css/bootstrap.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Ruthie' rel='stylesheet' type='text/css'>
 
 	<style type="text/css"><!--
 
@@ -30,7 +31,7 @@
 			text-align: center;
 		}
 
-		#twitter, #plus, #swing, #exclsr, #warp {     		
+		#twitter, #plus, #swing, #exclsr, #blog, #warp {     		
 			position: absolute;     		        
 			height: 115px;
 			width: 115px;
@@ -57,6 +58,21 @@
 		#exclsr {
 			top: 45%;
 			left: 55%;
+		}
+
+		#blog {
+			color: white;
+			background: darkorange;
+
+			font-family: 'Ruthie', serif;
+			font-size: 16em;
+
+			top: 55%;
+			left: 37%;		
+		}
+		#blog .logo {
+			margin-left: -0.32em;
+			margin-top: 0.07em;
 		}
 
 		#warp {
@@ -94,6 +110,7 @@
 // Hide the links in the navbar
 		var $toTwitter = $('#toTwitter').hide();
 		var $toSwing = $('#toSwing').hide();
+		var $toBlog = $('#toBlog').hide();
 		var $toExclsr = $('#toExclsr').hide();
 // Hide the twitter block with tweets
 		var $twitter = $('#twitterWidget').hide();
@@ -131,6 +148,19 @@
 				},
 				out: function(event, ui) {
 					$(this).css('background', 'olive');          
+				}
+			});
+
+		$("#blog")
+			.droppable({
+				over: function(event, ui) {
+					$(this).css('background', 'red');
+					destination = $toBlog.attr('href');          
+					$warp.animate({'background-color': 'darkorange'}, warpAnimationTime);
+					$warp.children().css('color', 'white');
+				},
+				out: function(event, ui) {
+					$(this).css('background', 'darkorange');
 				}
 			});
 
@@ -182,14 +212,15 @@
 
 <div class="navbar">
 	<div class="navbar-inner">
-	 <div class="container">
+		<div class="container">
 			<a class="brand">pmnjk</a>
 			<ul class="nav">
 				<li><a id="toTwitter" href="http://twitter.com/pmnjk/">Twitter</a></li>
 				<li><a id="toSwing" href="http://corvallisswing.com">Corvallis Swing</a></li>
 				<li><a id="toExclsr" href="http://github.com/exclsr/">exclsr</a></li>
+				<li><a id="toBlog" href="http://blog.pmnjk.com">blog</a></li>
 			</ul>
-	 </div>
+		</div>
 	</div>
 </div>
 
@@ -215,6 +246,10 @@
 
 	<div id="exclsr">
 		<img class="logo" src="./img/exclsr.png"/>
+	</div>
+
+	<div id="blog">
+		<div class="logo">B</div>
 	</div>
 
 	<div id="warp"><span class="text">Exit</span></div>
